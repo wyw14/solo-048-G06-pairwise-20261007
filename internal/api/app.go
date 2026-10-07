@@ -14,6 +14,7 @@ import (
 	"heatpulse/internal/protection"
 	"heatpulse/internal/pump"
 	"heatpulse/internal/recovery"
+	"heatpulse/internal/release"
 	"heatpulse/internal/station"
 	"heatpulse/internal/store"
 	"heatpulse/internal/telemetry"
@@ -61,6 +62,7 @@ type App struct {
 	StationCommands      *station.CommandService
 	Reconnector          *recovery.Reconnector
 	ZoneRecovery         *recovery.ZoneRecovery
+	Releases             *release.Service
 	Manual               *station.ManualService
 	Maintenance          *station.MaintenanceService
 }
@@ -111,6 +113,7 @@ func NewApp(dataDirectory string) (*App, error) {
 	planner := dispatch.NewPlanner(targets)
 	dispatchBuffer := dispatch.NewBuffer()
 	stationCommands := station.NewCommandService(stations)
+	releases := release.NewService(stations, targets, stationCommands, recorder)
 	app := &App{
 		DataDirectory: dataDirectory, Events: events, Audit: recorder, AuditQuery: audit.NewQuery(events),
 		Network: networkState, Topology: topology, NetworkRegistry: networkRegistry, Stations: stations,
@@ -123,7 +126,8 @@ func NewApp(dataDirectory string) (*App, error) {
 		Frost: protection.NewFrostProtection(valveOperations), Circulation: circulation, Antifreeze: antifreeze,
 		Warmup: warmup, Isolation: isolationService, IsolationCoordinator: isolation.NewCoordinator(isolationService),
 		Targets: targets, Planner: planner, DispatchBuffer: dispatchBuffer, StationCommands: stationCommands,
-		Manual: station.NewManualService(valveOperations), Maintenance: station.NewMaintenanceService(stations, snapshots),
+		Releases: releases,
+		Manual:   station.NewManualService(valveOperations), Maintenance: station.NewMaintenanceService(stations, snapshots),
 	}
 	app.SnapshotsBuilder = telemetry.NewSnapshotBuilder(app.Telemetry)
 	app.LeakProtection = protection.NewLeakProtection(app.LeakDetector)

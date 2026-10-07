@@ -25,4 +25,21 @@ h2 { font-size: 17px; margin: 28px 0 14px; }
 .panel dt { color: #63727a; }.panel dd { margin: 0; font-weight: 650; }
 button { background: #1f6967; color: #fff; border: 0; border-radius: 4px; height: 34px; padding: 0 14px; cursor: pointer; }
 button:hover { background: #164f4e; }
+.wide { grid-column: 1 / -1; }
+.badge { display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 700; color: #fff; }
+.badge-draft, .badge-stale { background: #7a8790; }
+.badge-approved { background: #2b6cb0; }
+.badge-publishing { background: #b7791f; }
+.badge-succeeded { background: #2f855a; }
+.badge-partial_fail, .badge-failed { background: #c53030; }
+.badge-acknowledged { background: #2f855a; }
+.badge-pending { background: #b7791f; }
+.badge-rejected, .badge-offline, .badge-stale_epoch, .badge-no_receipt { background: #c53030; }
+.release-alert { border: 2px solid #c53030; background: #fff5f5; }
+.release-alert h3 { color: #c53030; }
+table.targets { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 6px; }
+table.targets th, table.targets td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #eef1f2; }
+table.targets th { color: #63727a; font-weight: 600; }
+.flag { color: #c53030; font-size: 12px; margin-left: 6px; }
+.approval { margin-right: 12px; font-size: 13px; }
 @media (max-width: 720px) { header { height: auto; padding: 16px; align-items: flex-start; gap: 14px; } header, header div { flex-direction: column; } nav { width: 100%; overflow-x: auto; } nav a { padding: 10px 13px; } main { padding: 22px 14px; } .summary, .grid { grid-template-columns: 1fr; } }

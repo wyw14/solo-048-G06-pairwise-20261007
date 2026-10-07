@@ -48,6 +48,15 @@ func (a *App) Handler() http.Handler {
 		api.Post("/dispatch/holds", a.applyHold)
 		api.Delete("/dispatch/holds/{stationID}", a.releaseHold)
 		api.Post("/dispatch/buffer", a.bufferCommand)
+		api.Get("/releases/drafts", a.listReleaseDrafts)
+		api.Post("/releases/drafts", a.createReleaseDraft)
+		api.Get("/releases/drafts/{draftID}", a.getReleaseDraft)
+		api.Post("/releases/drafts/{draftID}/approvals", a.approveReleaseDraft)
+		api.Post("/releases/drafts/{draftID}/publish", a.publishReleaseDraft)
+		api.Get("/releases", a.listReleases)
+		api.Get("/releases/{releaseID}", a.getRelease)
+		api.Post("/releases/{releaseID}/receipts", a.recordReleaseReceipt)
+		api.Post("/releases/{releaseID}/reconcile", a.reconcileRelease)
 	})
 	return router
 }

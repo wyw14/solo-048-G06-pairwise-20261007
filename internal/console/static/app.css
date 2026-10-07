@@ -25,4 +25,13 @@ h2 { font-size: 17px; margin: 28px 0 14px; }
 .panel dt { color: #63727a; }.panel dd { margin: 0; font-weight: 650; }
 button { background: #1f6967; color: #fff; border: 0; border-radius: 4px; height: 34px; padding: 0 14px; cursor: pointer; }
 button:hover { background: #164f4e; }
+.badge { display: inline-block; border-radius: 10px; padding: 2px 10px; font-size: 12px; font-weight: 700; }
+.badge-good { background: #e3f2e6; color: #1c6b35; }
+.badge-bad { background: #fde7e4; color: #b3261e; }
+.badge-muted { background: #eceff1; color: #5d6b73; }
+.panel-bad { border-color: #e4a79f; box-shadow: inset 3px 0 0 #b3261e; }
+.receipts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12px; font-weight: 400; }
+.ok { color: #1c6b35; font-weight: 700; }
+.fail { color: #b3261e; font-weight: 700; }
+.muted { color: #8a979e; font-weight: 400; font-size: 12px; }
 @media (max-width: 720px) { header { height: auto; padding: 16px; align-items: flex-start; gap: 14px; } header, header div { flex-direction: column; } nav { width: 100%; overflow-x: auto; } nav a { padding: 10px 13px; } main { padding: 22px 14px; } .summary, .grid { grid-template-columns: 1fr; } }

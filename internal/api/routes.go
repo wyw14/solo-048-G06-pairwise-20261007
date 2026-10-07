@@ -48,6 +48,16 @@ func (a *App) Handler() http.Handler {
 		api.Post("/dispatch/holds", a.applyHold)
 		api.Delete("/dispatch/holds/{stationID}", a.releaseHold)
 		api.Post("/dispatch/buffer", a.bufferCommand)
+		api.Get("/target-drafts", a.listTargetDrafts)
+		api.Post("/target-drafts", a.createTargetDraft)
+		api.Get("/target-drafts/{draftID}", a.getTargetDraft)
+		api.Post("/target-drafts/{draftID}/refresh", a.refreshTargetDraft)
+		api.Get("/releases", a.listReleases)
+		api.Post("/releases", a.createRelease)
+		api.Get("/releases/{releaseID}", a.getRelease)
+		api.Post("/releases/{releaseID}/zones/{zoneID}/approve", a.approveReleaseZone)
+		api.Post("/releases/{releaseID}/zones/{zoneID}/reject", a.rejectReleaseZone)
+		api.Post("/releases/{releaseID}/publish", a.publishRelease)
 	})
 	return router
 }
